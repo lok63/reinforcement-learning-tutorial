@@ -39,32 +39,8 @@ class Grid: # Environment
         self.j += 1
       elif action == 'L':
         self.j -= 1
-
-      # When we go to a state that we already have been, we penalise
-      if self.current_state() in self.history:
-         return -100
-      else:
-        self.history.append(self.current_state())
-
-      # return a reward (if any)
-      return self.rewards.get((self.i, self.j), 0)
-
-    # Illigal move
-    else:
-      i,j = self.current_state()
-      if action == 'U':
-        i -= 1
-      elif action == 'D':
-        i += 1
-      elif action == 'R':
-        j += 1
-      elif action == 'L':
-        j -= 1
-      print(f'Illigal move to : {(i,j)}')
-      return -100
-
-
-
+    # return a reward (if any)
+    return self.rewards.get((self.i, self.j), 0)
 
   def undo_move(self, action):
     # these are the opposite of what U/D/L/R should normally do
